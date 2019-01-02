@@ -1,0 +1,79 @@
+/* Remove duplicates from a sorted linked list */
+class Test { //Outer class-LinkedList
+
+    Node head; //LinkedList head
+
+    class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public void addNodeToList(int data){
+        Node new_node = new Node(data);
+        /* Insert node at head
+        new_node.next = head;
+        head = new_node;
+         */
+        if(head == null) {
+            head = new_node;
+        }
+        else {
+            Node node = head;
+            while (node.next != null) { //Insert node at end
+                node = node.next;
+            }
+            node.next = new_node;
+        }
+    }
+
+    public void traverseList(){
+        Node node = head;
+        while(node != null) {
+            System.out.print( node.data + " ");
+            node = node.next;
+        }
+        System.out.println(); //Newline
+    }
+
+    public void delete(Node node) {
+        node.next = null;
+    }
+
+    public void removeDuplicate() {
+        if (head != null) {
+            Node current = head;
+            while(current != null) {
+                Node temp = current.next;
+                while ((temp != null) && (current.data == temp.data)) {
+                    current.next = temp.next;
+                    delete(temp);
+                    temp = current.next;
+                }
+                current = current.next;
+            }
+        }
+    }
+
+    public static void main(String args[]) {
+        Test list = new Test();
+        list.addNodeToList(11);
+        list.addNodeToList(11);
+        list.addNodeToList(11);
+        list.addNodeToList(21);
+        list.addNodeToList(43);
+        list.addNodeToList(43);
+        list.addNodeToList(60);
+
+
+        System.out.println("Linked List:");
+        list.traverseList();
+        list.removeDuplicate();
+        System.out.println("Linked list after duplicate removal:");
+        list.traverseList();
+    }
+}
