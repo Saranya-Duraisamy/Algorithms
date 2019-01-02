@@ -1,0 +1,46 @@
+/* Search in a row wise and column wise sorted matrix in linear complexity
+ * Apply Divide-and-Conquer method*/
+class Test {
+    static int[] SearchRowColSortedMatrix(int arr[][], int search, int r, int c) {
+        if( r < arr.length && c > -1 ) {
+            int current = arr[r][c];
+            if (current == search) {
+                return (new int[]{r, c});
+            }
+            if (current > search) {
+                return SearchRowColSortedMatrix(arr, search, r, c - 1);
+            }
+            if (current < search) {
+                return SearchRowColSortedMatrix(arr, search, r + 1, c);
+            }
+        }
+        return (new int[]{-1,-1});
+    }
+    public static void main(String args[]) {
+        /* //Test case 1
+        int mat[][] = { {10, 20, 30, 40},
+                        {15, 25, 35, 45},
+                        {27, 29, 37, 48},
+                        {32, 33, 39, 50} };
+        int index[];
+        index = SearchRowColSortedMatrix(mat, 29, 0, mat.length-1);
+        System.out.println("(" + index[0] + "," + index[1] + ")");
+        */
+        /* //Test case 2
+        int mat[][] = { {1, 5, 9},
+                        {14, 20, 21},
+                        {30, 34, 43} };
+        int index[];
+        index = SearchRowColSortedMatrix(mat, 14, 0, mat.length-1);
+        System.out.println("(" + index[0] + "," + index[1] + ")");*/
+
+        //Test case 3
+        int mat[][] = { {1, 5, 9},
+                        {14, 20, 21},
+                        {30, 34, 43} };
+        int index[];
+        index = SearchRowColSortedMatrix(mat, 42, 0, mat.length-1);
+        System.out.println("(" + index[0] + "," + index[1] + ")");
+
+    }
+}
