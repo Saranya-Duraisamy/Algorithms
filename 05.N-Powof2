@@ -1,0 +1,28 @@
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+
+/* Given a positive integer N, check if N is a power of 2 */
+class Test {
+    static void isPowerOfTwo(int num) {
+        //4 -> 100 and 16 -> 10000
+        //3 �> 011 and 15 -> 01111
+        if( (num & (num-1)) == 0 )
+            System.out.println("YES");
+        else
+            System.out.println("NO");
+    }
+    public static void main(String args[]) {
+        BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+        try {
+
+            System.out.println("Enter positive integer: ");
+            int num = Integer.parseInt(br.readLine());
+
+            isPowerOfTwo(num);
+        }
+        catch(IOException e) {
+            System.out.println("Exception: "+ e);
+        }
+    }
+}
