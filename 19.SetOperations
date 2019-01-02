@@ -1,0 +1,24 @@
+/* Set operations
+ * Union-addAll
+ * Intersection-retainAll
+ * Difference-removeAll
+ */
+import java.util.*;
+class Test {
+    public static void main(String args[]) {
+        int[] input1 = {2,7,17,19,20,45,56,159,239};
+        int[] input2 = {7,12,15,19,22,34,55,150,159};
+        TreeSet<Integer> list1 = new TreeSet<Integer>();
+        for( int i:input1) {
+            list1.add(i);
+        }
+        LinkedHashSet<Integer> list2 = new LinkedHashSet<Integer>();
+        for( int i:input2) {
+            list2.add(i);
+        }
+        //list1.retainAll(list2);
+        //list1.addAll(list2);
+        list1.removeAll(list2);
+        System.out.println(list1);
+    }
+}
