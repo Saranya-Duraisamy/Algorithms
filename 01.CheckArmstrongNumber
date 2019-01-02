@@ -1,0 +1,34 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.Math;
+
+import static java.lang.Math.pow;
+
+public class Test {
+    public static void main(String[] args) {
+        System.out.println("Enter the number: ");
+        try{
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            int x = Integer.parseInt(br.readLine());
+            int arms_num = 0;
+            int temp = x;
+            String str = Integer.toString(x);
+            int len = str.length();
+            while(temp > 0){
+                arms_num += pow((temp%10), len);
+                temp = temp/10;
+            }
+
+            if(arms_num == x){
+                System.out.println( x + " is an Armstrong number.");
+            }
+            else {
+                System.out.println(x + " is not a Armstrong number.");
+            }
+        }
+        catch(IOException e) {
+            System.out.println("Exception: " + e);
+        }
+    }
+}
