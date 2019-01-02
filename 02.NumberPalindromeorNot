@@ -1,0 +1,51 @@
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+class Test{
+    boolean isPalindromeExtraSpace(int num) {
+        int new_num = 0;
+        int temp = num;
+
+        while ( temp >0 ){
+            new_num *= 10;
+            new_num += (temp%10);
+            temp = temp/10;
+        }
+
+        return (num == new_num);
+    }
+    boolean isPalindromeNoExtraSpace(int num) {
+        int divisor = 1;
+        while(num/divisor >= 10) {
+            divisor *= 10;
+        }
+
+        while ( num >0 ){
+            int leading = num / divisor;
+            int trailing = num % 10;
+            if(leading != trailing)
+                return false;
+            num = (num%divisor)/10; //knock off leading and trailing digit
+            divisor = divisor/100; //Leading and Trailing digits knocked off
+        }
+        return true;
+    }
+    public static void main(String[] args){
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            System.out.println("Enter number: ");
+            int num = Integer.parseInt(br.readLine());
+            Test t = new Test();
+            if(t.isPalindromeNoExtraSpace(num)) {
+                System.out.println(num + " is a palindrome");
+            }
+            else {
+                System.out.println(num + " is not a palindrome");
+            }
+        }
+        catch(IOException e){
+            System.out.println("Exception: " + e);
+        }
+    }
+}
