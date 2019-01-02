@@ -1,0 +1,44 @@
+/* Find out duplicate number between 1 to N numbers.
+ * You have got a range of numbers between 1 to N, where one of the number is repeated.
+ * You need to write a program to find out the duplicate number. */
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.ArrayList;
+import java.io.IOException;
+class Test {
+    public int removeDuplicate(List<Integer> list) {
+        int dup;
+        int N = list.size()-1;
+        int sum = 0;
+        for(Integer i:list) {
+            sum += i;
+        }
+        dup = sum - (N*(N+1)/2);
+        return dup;
+    }
+
+    public static void main(String args[]) {
+        int N, dup;
+        System.out.println("Enter the range(N): ");
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            N = Integer.parseInt(br.readLine());
+
+            System.out.println("Enter the duplicate number: ");
+            dup = Integer.parseInt(br.readLine());
+
+            List<Integer> list = new ArrayList<Integer>();
+            for(int i=1; i<=N; i++) {
+                list.add(i);
+            }
+            list.add(dup);
+
+            Test test = new Test();
+            System.out.println("Duplicate Number: " + test.removeDuplicate(list));
+        }
+        catch(IOException e) {
+            System.out.println("Exception: " + e);
+        }
+    }
+}
