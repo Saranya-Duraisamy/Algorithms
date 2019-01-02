@@ -1,0 +1,51 @@
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.util.StringTokenizer;
+
+class Test {
+    static int binarySearch(int[] arr, int search_item, int start, int end) {
+        if(start <= end) {
+            int mid = (start + end) / 2;
+            if (arr[mid] == search_item) {
+                return mid;
+            } else {
+                if (arr[mid] > search_item) {
+                    return binarySearch(arr, search_item, start, mid - 1);
+                } else {
+                    return binarySearch(arr, search_item, mid + 1, end);
+                }
+            }
+        }
+        else {
+            return -1;
+        }
+    }
+    public static void main(String args[]) {
+        BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+        try {
+            int size;
+            int search_item;
+            System.out.println("Enter array size: ");
+            size = Integer.parseInt(br.readLine());
+
+            int[] arr = new int[size];
+            System.out.println("Enter array: ");
+            String str = br.readLine();
+
+            StringTokenizer strTok = new StringTokenizer(str);
+            int index = 0;
+            while(strTok.hasMoreTokens()){
+                arr[index++] = Integer.parseInt(strTok.nextToken());
+            }
+
+            System.out.println("Enter search element: ");
+            search_item = Integer.parseInt(br.readLine());
+
+            System.out.println("Output: "+ binarySearch(arr, search_item, 0, arr.length-1) );
+        }
+        catch(IOException e) {
+            System.out.println("Exception: "+ e);
+        }
+    }
+}
