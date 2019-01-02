@@ -1,0 +1,44 @@
+/* Find out middle index where sum of both ends are equal.
+ * You are given an array of numbers. Find out the array index or position
+ * where sum of numbers preceding the index is equals to sum of numbers
+ * succeeding the index. */
+
+class Test {
+    public int findMiddleIndex(int[] num) throws Exception {
+        int start = 0;
+        int end = num.length-1;
+        int leftSum = 0;
+        int rightSum = 0;
+
+        while(start <= end){
+            if(leftSum < rightSum) {
+                leftSum += num[start];
+                start++;
+            }
+            else {
+                rightSum += num[end];
+                end--;
+            }
+        }
+        if(leftSum == rightSum) {
+            return end;
+        }
+        else {
+            throw new Exception ("No such middle index exists in the given array");
+        }
+    }
+
+    public static void main(String args[]) {
+        int[] num = { 1, 2, 0, 2, 1 }; //Positive Test-old range
+        //int[] num = { 1, 3, 2, 3, 3 }; //Positive Test-old range
+        //int[] num = { 2, 4, 4, 5, 4, 1 }; //Positive Test-even range
+        //int[] num = { 2, 4, 4, 4, 4, 1 }; //Negative Test-even range
+        try {
+            Test test = new Test();
+            System.out.println("Middle Index: " + test.findMiddleIndex(num));
+        }
+        catch(Exception e) {
+            System.out.println("Exception: " + e);
+        }
+    }
+}
