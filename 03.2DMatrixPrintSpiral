@@ -1,0 +1,43 @@
+class Test {
+    static void printSpiralMatrix(int[][] arr, int row, int col) {
+        //r_s - row's start index
+        //r_e - row's end index
+        //c_s - col's start index
+        //c_e - col's end index
+        int r_s, r_e, c_s, c_e;
+        r_s = c_s = 0;
+        r_e = row-1;
+        c_e = col-1;
+        for(int loop = 0; loop < row*col; ){
+            for(int i=r_s,j=c_s; j<=c_e; j++){
+                System.out.print(arr[i][j] + " ");
+                loop++;
+            }
+            for(int i=r_s+1,j=c_e; i<=r_e; i++){
+                System.out.print(arr[i][j] + " ");
+                loop++;
+            }
+            c_e--;
+            for(int i=r_e,j=c_e; j>=c_s; j--){
+                System.out.print(arr[i][j] + " ");
+                loop++;
+            }
+            r_e--;
+            for(int i=r_e,j=c_s; i>r_s; i--){
+                System.out.print(arr[i][j] + " ");
+                loop++;
+            }
+            r_s++;
+            c_s++;
+        }
+    }
+    public static void main(String[] args) {
+        //int[][] arr = {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
+        int[][] arr = { {1,  2,  3,  4,  5,  6},
+                        {7,  8,  9,  10, 11, 12},
+                        {13, 14, 15, 16, 17, 18} };
+        int r = arr.length;
+        int c = arr[0].length;
+        printSpiralMatrix(arr, r, c);
+    }
+}
