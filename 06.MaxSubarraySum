@@ -1,0 +1,47 @@
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+
+/* Kadane's Algorithm - Given an array containing both negative and positive integers.
+   Find the contiguous sub-array with maximum sum */
+class Test {
+    static int MaxSubArraySum(int arr[], int size) {
+        int sum = arr[0];
+        int partial_sum = 0;
+        for(int loop = 0; loop < size; loop++) {
+            partial_sum = partial_sum + arr[loop];
+            /*
+            while((loop < size) && (partial_sum+arr[loop] >= partial_sum) ) {
+                partial_sum = partial_sum + arr[loop];
+                loop++;
+            }*/
+            if(sum < partial_sum) {
+                sum = partial_sum;
+            }
+            if(partial_sum < 0) {
+                partial_sum = 0;
+            }
+        }
+        return sum;
+    }
+    public static void main(String args[]) {
+        BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+        try {
+            System.out.println("Enter size: ");
+            int size= Integer.parseInt(br.readLine());
+            int arr[] = new int[size];
+
+            System.out.println("Enter array: ");
+            String input = br.readLine();
+            String[] tokens = input.split(" ");
+            int index = 0;
+            for(String token: tokens){
+                arr[index++] = Integer.parseInt(token);
+            }
+            System.out.println(MaxSubArraySum(arr,size));
+        }
+        catch(IOException e) {
+            System.out.println("Exception: "+ e);
+        }
+    }
+}
