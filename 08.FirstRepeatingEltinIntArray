@@ -1,0 +1,55 @@
+import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.HashSet;
+
+/* Find the first repeating element in an array of integers
+ * Given an array of integers, find the first repeating element in it.
+ * We need to find the element that occurs more than once and whose index of first occurrence is smallest.*/
+class Test {
+    static void printFirstRepeating(int arr[]) {
+        /* //My Method- creates HashMap & TreeMap
+        HashMap<Integer, Integer> hashMap = new HashMap<Integer,Integer>();
+        TreeMap<Integer, Integer> treeMap = new TreeMap<Integer, Integer>();
+        for(int i = 0; i < arr.length; i++) {
+            if(hashMap.containsKey(arr[i])) {
+                int key = arr[i];
+                int value = hashMap.remove(arr[i]);
+                treeMap.put(value, key); //Key-array index; Value-array element
+            }
+            else {
+                hashMap.put(arr[i], i); //Key-array element; Value-array index
+            }
+        }
+        hashMap.clear();
+        if(!treeMap.isEmpty()) {
+            int index = treeMap.firstKey();
+            System.out.println("First repeating element " + treeMap.get(index) + " at index: " + index);
+            treeMap.clear();
+        }*/
+
+        //Efficient Method - Only HashSet
+        HashSet<Integer> hashSet = new HashSet<Integer>();
+        int index = -1;
+        for(int i = (arr.length-1); i >= 0; i--) {
+            if(hashSet.contains(arr[i])) {
+                index = i;
+            }
+            else {
+                hashSet.add(arr[i]);
+            }
+        }
+        hashSet.clear();
+        System.out.println("First repeating element at index: " + index);
+    }
+    public static void main(String args[]) {
+        /* //Test case 1
+        int arr[] = {10, 10, 3, 5, 3, 4, 3, 5, 6};
+        //Test case 2
+        int arr[] = {10, 5, 3, 4, 3, 5, 6};
+        //Test case 3
+        int arr[] = {10, 5, 3, 4, 2, 1, 6};*/
+        //Test case 4
+        int arr[] = {10, 5, 3, 4, 6, 6, 3};
+        printFirstRepeating(arr);
+    }
+}
