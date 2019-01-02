@@ -1,0 +1,22 @@
+/* Write a program to swap or exchange two numbers. You should
+not use any temporary or third variable to swap.*/
+
+class Test {
+    int[] swapWithoutTempVar(Integer num1, Integer num2) {
+        if(num1 == num2) return new int[]{num1,num2};
+        else{
+            num1 = num1+num2;
+            num2 = num1-num2;
+            num1 = num1-num2;
+        }
+        return new int[]{num1,num2};
+    }
+    public static void main(String args[]) {
+        Test test = new Test();
+        //int num[] = new int[]{3,3};
+        int num[] = new int[]{0,3};
+        System.out.println("num1: " + num[0] + " num2: " + num[1] );
+        num = test.swapWithoutTempVar(num[0],num[1]);
+        System.out.println("num1: " + num[0] + " num2: " + num[1] );
+    }
+}
