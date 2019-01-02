@@ -1,0 +1,24 @@
+/* Write a program to find top two maximum numbers in a array*/
+
+class Test {
+    public void printTwoMaxNumbers(int num[]){
+        int maxOne = Integer.MIN_VALUE;
+        int maxTwo = Integer.MIN_VALUE;
+        for(int i: num){
+            if(maxOne < i){
+                maxTwo = maxOne;
+                maxOne = i;
+            }
+            else if(maxTwo < i){
+                maxTwo = i;
+            }
+        }
+        System.out.println("First Max: " + maxOne + " Second Max: " + maxTwo);
+    }
+    public static void main(String args[]) {
+        Test test = new Test();
+        int num[] = {5,34,78,2,45,1,99,23}; //{-1,-2,-3,-4};//
+        test.printTwoMaxNumbers(num);
+        //System.out.println(Integer.MIN_VALUE);
+    }
+}
