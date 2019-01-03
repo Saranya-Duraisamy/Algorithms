@@ -1,0 +1,55 @@
+/*
+ * Given a matrix, find the path from top left to bottom right with the greatest
+ * product by moving only down and right.
+ */
+public class Solution {
+    static int findGreatestProduct(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+
+        int[][] max =  new int[rows][cols];
+        int[][] min =  new int[rows][cols];
+
+        max[0][0] = min[0][0] = matrix[0][0];
+        for(int i=1; i<rows; i++) {
+            min[i][0] = max[i][0] = max[i-1][0]*matrix[i][0];
+        }
+        for(int i=1; i<cols; i++) {
+            min[0][i] = max[0][i] = max[0][i-1]*matrix[0][i];
+        }
+
+        int[] comp = new int[4];
+        for(int i=1; i<rows; i++) {
+            for(int j=1; j<cols; j++) {
+                comp[0] = matrix[i][j] * max[i - 1][j]; //Left
+                comp[1] = matrix[i][j] * max[i][j - 1]; //Top
+                comp[2] = matrix[i][j] * min[i - 1][j]; //Left
+                comp[3] = matrix[i][j] * min[i][j - 1]; //Top
+
+                int minimum = Integer.MAX_VALUE;
+                int maximum = Integer.MIN_VALUE;
+                int index = 0;
+                for (int loop = 0; loop < 4; loop++) {
+                    if (minimum > comp[loop]) {
+                        minimum = comp[loop];
+                    }
+                    if (maximum < comp[loop]) {
+                        maximum = comp[loop];
+                    }
+                }
+
+                max[i][j] = maximum;
+                min[i][j] = minimum;
+            }
+        }
+        return max[rows-1][cols-1];
+    }
+    public static void main(String[] args){
+        int[][] matrix = {{1,2,3},{4,5,6},{7,8,9}};
+        // {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
+        // {{-1,2,3},{4,5,-6},{7,8,9}};
+        // {{1,2,3},{4,5,6},{7,8,-9}};
+        // {{1,2,3},{4,5,6},{7,8,9}};
+        System.out.println("\n"+findGreatestProduct(matrix));
+    }
+}
