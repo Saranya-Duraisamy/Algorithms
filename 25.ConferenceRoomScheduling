@@ -1,0 +1,27 @@
+/*
+
+Question: Given a set of meetings, assign them to conference rooms using the fewest rooms possible.
+
+Input:
+
+The input will be a set of `Meeting` objects, where each `Meeting` object has a `start` and `end` time. (Assume time is just an int!)
+In Python, this might look something like:
+    class Meeting(object):
+      def __init__(self, start, end):
+        self.start = start
+        self.end = end
+        
+    input = [
+      Meeting(start=10, end=17),
+      Meeting(start=23, end=30),
+      Meeting(start=15, end=25),
+    ]
+Output
+
+Return the minimal number of conference rooms needed to schedule all the meetings without overlap. The output should be a single number. 
+For example, using the `input` defined above:
+
+    >>> schedule(input)
+    2
+
+*/
